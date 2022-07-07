@@ -6,6 +6,9 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import settings from './settings'
 import home from './home'
 import blockEditor from './blockEditor'
+import blockPopup from './blockPopup'
+import bookingList from './bookingList'
+import blockColumn from './blockColumn'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -15,6 +18,9 @@ export default createSchema({
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
     home,
+    bookingList,
+    blockPopup,
+    blockColumn,
     settings,
     blockEditor
   ]),

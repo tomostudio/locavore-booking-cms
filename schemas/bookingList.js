@@ -1,6 +1,6 @@
 export default {
-  name: 'home',
-  title: 'Home',
+  name: 'bookingList',
+  title: 'Booking List',
   type: 'document',
   fields: [
     {
@@ -14,6 +14,30 @@ export default {
       title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      description:
+        "Slug is generated from Title, Lower Characters (a-z), Numericals (0-9), dash (-) and must not start with a /, Minimum 3 Characters, eg: 'project-title'",
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+      validation: (Rule) =>
+        Rule.custom((slug) => {
+          const regex = /^[a-z0-9]{3,}(?:-[a-z0-9]+)*$/
+          if (slug) {
+            if (slug.current.match(regex) !== null) {
+              return true
+            } else {
+              return 'Not a valid slug'
+            }
+          } else {
+            return 'Required'
+          }
+        }),
     },
     {
       title: 'RSVP',
@@ -127,10 +151,9 @@ export default {
     },
   ],
   preview: {
-    prepare() {
-      return {
-        title: 'Home',
-      }
+    select: {
+      title: 'page_title',
+      media: 'cover_image',
     },
   },
 }

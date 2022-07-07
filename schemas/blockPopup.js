@@ -1,7 +1,6 @@
 import React from 'react'
-import { FiExternalLink } from 'react-icons/fi'
+import { FiExternalLink, FiMail } from 'react-icons/fi'
 import { AiOutlineWhatsApp } from 'react-icons/ai'
-import { BiFont } from 'react-icons/bi'
 
 const linkRender = (props) => (
   <span>
@@ -15,39 +14,19 @@ const walinkRender = (props) => (
   </span>
 )
 
+const emailRender = (props) => (
+  <span>
+    {props.children} <FiMail />
+  </span>
+)
+
 const normalRender = (props) => (
   <p style={{ textAlign: 'center' }}>{props.children}</p>
 )
 
-const h1Render = (props) => (
-  <h1 style={{ textAlign: 'center' }}>{props.children}</h1>
-)
-
-const h2Render = (props) => (
-  <h2 style={{ textAlign: 'center' }}>{props.children}</h2>
-)
-
-const h3Render = (props) => (
-  <h3 style={{ textAlign: 'center' }}>{props.children}</h3>
-)
-
-const h4Render = (props) => (
-  <h4 style={{ textAlign: 'center' }}>{props.children}</h4>
-)
-
-const h5Render = (props) => (
-  <h5 style={{ textAlign: 'center' }}>{props.children}</h5>
-)
-
-const fontRender = (props) => (
-  <span>
-    {props.children} <BiFont />
-  </span>
-)
-
 export default {
-  title: 'Block Editor',
-  name: 'blockEditor',
+  title: 'Block Popup',
+  name: 'blockPopup',
   type: 'array',
   of: [
     {
@@ -92,42 +71,17 @@ export default {
             ],
           },
           {
-            name: 'email',
+            name: 'mail',
             type: 'object',
             title: 'Email',
             blockEditor: {
-              icon: () => <FiExternalLink />,
-              render: linkRender,
+              icon: () => <FiMail />,
+              render: emailRender,
             },
             fields: [
               {
-                name: 'url',
-                type: 'url',
-              },
-            ],
-          },
-          {
-            title: 'Font',
-            name: 'font',
-            type: 'object',
-            blockEditor: {
-              icon: () => <BiFont />,
-              render: fontRender,
-            },
-            fields: [
-              {
-                name: 'type',
-                type: 'string',
-                validation: (Rule) => Rule.required(),
-                options: {
-                  list: [
-                    { title: 'Serif', value: 'font-serif' },
-                    { title: 'Sans', value: 'font-sans' },
-                    { title: 'Default', value: 'font-default' },
-                  ],
-                  layout: 'radio',
-                },
-                initialValue: 'font-default',
+                name: 'content',
+                type: 'email',
               },
             ],
           },
@@ -141,41 +95,11 @@ export default {
             render: normalRender,
           },
         },
-        {
-          title: 'H1',
-          value: 'h1',
-          blockEditor: {
-            render: h1Render,
-          },
-        },
-        {
-          title: 'H2',
-          value: 'h2',
-          blockEditor: {
-            render: h2Render,
-          },
-        },
-        {
-          title: 'H3',
-          value: 'h3',
-          blockEditor: {
-            render: h3Render,
-          },
-        },
-        {
-          title: 'H4',
-          value: 'h4',
-          blockEditor: {
-            render: h4Render,
-          },
-        },
-        {
-          title: 'H5',
-          value: 'h5',
-          blockEditor: {
-            render: h5Render,
-          },
-        },
+        { title: 'H1', value: 'h1' },
+        { title: 'H2', value: 'h2' },
+        { title: 'H3', value: 'h3' },
+        { title: 'H4', value: 'h4' },
+        { title: 'H5', value: 'h5' },
       ],
       lists: [],
     },
@@ -234,6 +158,44 @@ export default {
         prepare() {
           return {
             title: 'Dot Divider',
+          }
+        },
+      },
+    },
+    {
+      title: 'Column Block',
+      name: 'columnBlock',
+      type: 'object',
+      fields: [
+        {
+          title: 'Left',
+          name: 'left',
+          type: 'object',
+          fields: [
+            {
+              title: 'Editor',
+              name: 'editor',
+              type: 'blockColumn',
+            },
+          ],
+        },
+        {
+          title: 'Right',
+          name: 'right',
+          type: 'object',
+          fields: [
+            {
+              title: 'Editor',
+              name: 'editor',
+              type: 'blockColumn',
+            },
+          ],
+        },
+      ],
+      preview: {
+        prepare() {
+          return {
+            title: 'Column Block',
           }
         },
       },

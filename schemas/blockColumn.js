@@ -46,8 +46,8 @@ const fontRender = (props) => (
 )
 
 export default {
-  title: 'Block Editor',
-  name: 'blockEditor',
+  title: 'Block Column',
+  name: 'blockColumn',
   type: 'array',
   of: [
     {
@@ -237,19 +237,6 @@ export default {
           }
         },
       },
-    },
-    {
-      title: 'Image',
-      name: 'image',
-      type: 'image',
-      fields: [
-        {
-          title: 'Edit Alt Text',
-          name: 'name',
-          type: 'string',
-          initialValue: 'Locavore NXT',
-        },
-      ],
     },
   ],
 }

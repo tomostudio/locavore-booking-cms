@@ -20,7 +20,7 @@ export default () =>
     .title('Content')
     .items([
       ...S.documentTypeListItems().filter(
-        (listItem) => !['settings', 'home'].includes(listItem.getId()),
+        (listItem) => !['settings', 'home', 'bookingList'].includes(listItem.getId()),
       ),
       S.listItem()
         .title('Pages')
@@ -33,6 +33,7 @@ export default () =>
                 .title('Home')
                 .icon(() => <FiHome />)
                 .child(S.document().schemaType('home').documentId('home')),
+              S.documentTypeListItem('bookingList').icon(() => <FiFileText />),
             ]),
         ),
       S.listItem()
