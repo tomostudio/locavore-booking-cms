@@ -207,7 +207,7 @@ export default {
       fields: [
         {
           title: 'Edit Alt Text',
-          name: 'name',
+          name: 'alt',
           type: 'string',
           initialValue: 'Locavore NXT',
         },
